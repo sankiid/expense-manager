@@ -1,0 +1,1 @@
+keytool -genkey -alias expense-manager -keyalg RSA -keysize 2048 -validity 1000 -keypass sandeep -storepass sandeep -keystore ssl-server.jks

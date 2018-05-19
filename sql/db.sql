@@ -8,9 +8,8 @@ CREATE TABLE `users` (
   `user_name` varchar(30) NOT NULL,
   `created_at` date NOT NULL,
   `password` varchar(100) NOT NULL,
-  `token` varchar(100) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `token` (`token`),
   UNIQUE `user_name` (`user_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -90,3 +89,36 @@ INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('food', now(), 'ex
 INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('health care', now(), 'expense');
 INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('dish tv', now(), 'expense');
 INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('others', now(), 'expense');
+
+drop table bank;
+CREATE TABLE `bank` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL DEFAULT '',
+  `created_at` date DEFAULT NULL,
+  `updated_at` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `bank` (`id`, `name`, `created_at`, `updated_at`)
+VALUES
+	(1, 'sbi', '2018-05-19', '2018-05-19'),
+	(2, 'icici', '2018-05-19', '2018-05-19'),
+	(3, 'citi', '2018-05-19', '2018-05-19'),
+	(4, 'paytm', '2018-05-19', '2018-05-19'),
+	(5, 'airtel wallet', '2018-05-19', '2018-05-19'),
+	(6, 'phonepe', '2018-05-19', '2018-05-19'),
+	(7, 'kotak bank', '2018-05-19', '2018-05-19'),
+	(8, 'wallet', '2018-05-19', '2018-05-19'),
+	(9, 'others', '2018-05-19', '2018-05-19');
+
+
+drop table user_account_info;
+CREATE TABLE `user_account_info` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `bank_id` int(11) NOT NULL,
+  `amount` float NOT NULL,
+  `created_at` date DEFAULT NULL,
+  `update_at` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

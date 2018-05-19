@@ -3,22 +3,24 @@ package com.expense.manager.bo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.util.Collection;
 
-public class User implements UserDetails {
+public class User implements UserDetails, Serializable {
 
     private long userId;
     private String userName;
     private Collection<? extends GrantedAuthority> roles;
     private String password;
+    private String name;
     private String token;
 
-    public String getToken() {
-        return token;
+    public String getName() {
+        return name;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setUserId(long userId) {
@@ -73,6 +75,14 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override

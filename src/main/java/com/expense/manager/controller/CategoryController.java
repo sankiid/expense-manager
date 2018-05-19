@@ -4,29 +4,34 @@ import com.expense.manager.bo.Category;
 import com.expense.manager.cache.CategoryCache;
 import com.expense.manager.dto.Response;
 import com.expense.manager.exception.CategoryNotFoundException;
+import com.expense.manager.service.impl.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/category")
 public class CategoryController {
 
-    private CategoryCache categoryCache = CategoryCache.getInstance();
-
-    /*@RequestMapping(value = "/get/{name}", method = RequestMethod.GET)
-    public Response getCategoryByName(@PathVariable String name) throws CategoryNotFoundException {
-        Category category = categoryCache.getByName(name);
-        if(category == null)
-            throw new CategoryNotFoundException("Unable to find category");
-        Response response = new Response(200, null, null, category);
-        return response;
-    }*/
+    @Autowired
+    private CategoryService categoryService;
 
     @RequestMapping(value = "/get/{type}", method = RequestMethod.GET)
     public Response getCategoryByType(@PathVariable String type) throws CategoryNotFoundException {
-        List<Category> categoryList = categoryCache.getByTypes(type);
+        List<Category> categoryList = categoryService.getCategoryByType(type);
         Response response = new Response(200, null, null, categoryList);
         return response;
     }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @RequestMapping(value = "/add", method = RequestMethod.PUT)
+    public Response addCategory(HttpServletRequest request, @RequestBody Category category){
+        long id = categoryService.save(category);
+        Response response = new Response(201, "category add successfully", null, id);
+        return response;
+    }
+
 }

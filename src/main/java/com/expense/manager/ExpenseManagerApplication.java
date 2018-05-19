@@ -1,7 +1,9 @@
 package com.expense.manager;
 
+import com.expense.manager.cache.BankCache;
 import com.expense.manager.cache.CategoryCache;
 import com.expense.manager.cache.RoleCache;
+import com.expense.manager.service.IBankService;
 import com.expense.manager.service.ICategoryService;
 import com.expense.manager.service.IUserService;
 import org.slf4j.Logger;
@@ -21,10 +23,13 @@ public class ExpenseManagerApplication extends WebMvcConfigurerAdapter{
     private ICategoryService categoryService;
     @Autowired
     private IUserService userService;
+    @Autowired
+    private IBankService bankService;
 
     @PostConstruct
     public void init(){
         CategoryCache.getInstance().init(categoryService);
+        BankCache.getInstance().init(bankService);
         RoleCache.getInstance().init(userService);
         logger.info("cache init successful.");
     }
@@ -34,6 +39,7 @@ public class ExpenseManagerApplication extends WebMvcConfigurerAdapter{
 
         CategoryCache.getInstance().loadAll();
         RoleCache.getInstance().loadAll();
+        BankCache.getInstance().loadAll();
         logger.info("server in up and running...");
     }
 }

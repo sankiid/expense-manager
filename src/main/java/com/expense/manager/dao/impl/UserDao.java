@@ -38,7 +38,7 @@ public class UserDao implements IUserDao {
 
     @Override
     public long createUser(User user) {
-        String sql = "INSERT INTO `users` (`user_name`, `password`, `created_at`) VALUES (?, ?, now())";
+        String sql = "INSERT INTO users (user_name, password, created_at, name) VALUES (?, ?, now(), ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
@@ -46,6 +46,7 @@ public class UserDao implements IUserDao {
                 PreparedStatement pst = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 pst.setString(1, user.getUsername());
                 pst.setString(2, user.getPassword());
+                pst.setString(3, user.getName());
                 return pst;
             }
         }, keyHolder);

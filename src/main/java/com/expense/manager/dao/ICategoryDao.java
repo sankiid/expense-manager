@@ -10,4 +10,6 @@ public interface ICategoryDao {
     Category getCategoryByName(String name);
 
     Category getCategoryById(long id);
+
+    long save(Category category);
 }
