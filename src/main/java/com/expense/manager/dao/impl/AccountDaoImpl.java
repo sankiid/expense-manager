@@ -22,7 +22,7 @@ public class AccountDaoImpl implements IAccountDao {
 
     @Override
     public long save(UserAccountInfo accountInfo, long userId) {
-        String sql = "INSERT INTO user_account_info (amount, user_id, bank_id, created_at, update_at) values (?, ?, ?, now(), now())";
+        String sql = "INSERT INTO user_account_info (amount, user_id, bank_id, account_number, created_at, update_at) values (?, ?, ?, ?, now(), now())";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
@@ -32,6 +32,7 @@ public class AccountDaoImpl implements IAccountDao {
                 pst.setFloat(1, accountInfo.getAmount());
                 pst.setLong(2, userId);
                 pst.setLong(3, accountInfo.getBank().getId());
+                pst.setString(4, accountInfo.getAccountNumber());
                 return pst;
             }
         }, keyHolder);
@@ -40,8 +41,8 @@ public class AccountDaoImpl implements IAccountDao {
 
     @Override
     public void update(UserAccountInfo accountInfo, long userId) {
-        String sql = "UPDATE user_account_info SET amount =?, bank_id=?, update_at=now() WHERE id = ? and user_id = ?";
-        jdbcTemplate.update(sql, accountInfo.getAmount(), accountInfo.getBank().getId(), accountInfo.getId(), userId);
+        String sql = "UPDATE user_account_info SET amount =?, bank_id=?, account_number=?, update_at=now() WHERE id = ? and user_id = ?";
+        jdbcTemplate.update(sql, accountInfo.getAmount(), accountInfo.getBank().getId(), accountInfo.getAccountNumber(), accountInfo.getId(), userId);
 
     }
 

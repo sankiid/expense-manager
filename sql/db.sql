@@ -117,8 +117,10 @@ CREATE TABLE `user_account_info` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `bank_id` int(11) NOT NULL,
+  `account_number` varchar(30) default null,
   `amount` float NOT NULL,
   `created_at` date DEFAULT NULL,
   `update_at` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  CONSTRAINT bank_acct_idx UNIQUE (bank_id,account_number)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

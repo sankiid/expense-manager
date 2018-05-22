@@ -9,6 +9,7 @@ public class UserAccountInfo implements Serializable {
     private long userId;
     private Bank bank;
     private float amount;
+    private String accountNumber;
     private Date createdAt;
     private Date updatedAt;
 
@@ -16,13 +17,14 @@ public class UserAccountInfo implements Serializable {
     public UserAccountInfo() {
     }
 
-    public UserAccountInfo(long id, long userId, Bank bank, float amount, Date createdAt, Date updatedAt) {
+    public UserAccountInfo(long id, long userId, Bank bank, float amount, Date createdAt, Date updatedAt, String accountNumber) {
         this.id = id;
         this.userId = userId;
         this.bank = bank;
         this.amount = amount;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.accountNumber = accountNumber;
     }
 
     public long getId() {
@@ -73,6 +75,14 @@ public class UserAccountInfo implements Serializable {
         this.updatedAt = updatedAt;
     }
 
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
     @Override
     public String toString() {
         return "UserAccountInfo{" +
@@ -80,6 +90,7 @@ public class UserAccountInfo implements Serializable {
                 ", userId=" + userId +
                 ", bank=" + bank +
                 ", amount=" + amount +
+                ", accountNumber=" + accountNumber +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';

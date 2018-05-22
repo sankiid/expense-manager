@@ -8,7 +8,7 @@
     <artifactId>expense-manager</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>expense-manager</name>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <description>Expense,Income and Investment tracking app</description>
 
     <parent>
