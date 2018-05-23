@@ -22,7 +22,7 @@ public class AccountDaoImpl implements IAccountDao {
 
     @Override
     public long save(UserAccountInfo accountInfo, long userId) {
-        String sql = "INSERT INTO user_account_info (amount, user_id, bank_id, account_number, created_at, update_at) values (?, ?, ?, ?, now(), now())";
+        String sql = "INSERT INTO user_account_info (amount, user_id, bank_id, account_number, created_at, updated_at) values (?, ?, ?, ?, now(), now())";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
@@ -41,7 +41,7 @@ public class AccountDaoImpl implements IAccountDao {
 
     @Override
     public void update(UserAccountInfo accountInfo, long userId) {
-        String sql = "UPDATE user_account_info SET amount =?, bank_id=?, account_number=?, update_at=now() WHERE id = ? and user_id = ?";
+        String sql = "UPDATE user_account_info SET amount =?, bank_id=?, account_number=?, updated_at=now() WHERE id = ? and user_id = ?";
         jdbcTemplate.update(sql, accountInfo.getAmount(), accountInfo.getBank().getId(), accountInfo.getAccountNumber(), accountInfo.getId(), userId);
 
     }

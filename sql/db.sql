@@ -120,7 +120,7 @@ CREATE TABLE `user_account_info` (
   `account_number` varchar(30) default null,
   `amount` float NOT NULL,
   `created_at` date DEFAULT NULL,
-  `update_at` date DEFAULT NULL,
+  `updated_at` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT bank_acct_idx UNIQUE (bank_id,account_number)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

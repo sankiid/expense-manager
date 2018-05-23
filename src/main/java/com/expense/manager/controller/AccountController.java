@@ -7,6 +7,7 @@ import com.expense.manager.dto.Response;
 import com.expense.manager.exception.ValidationException;
 import com.expense.manager.service.IAccountService;
 import com.expense.manager.utils.UserUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,7 @@ import java.util.List;
 @RequestMapping(value = "/api/account")
 public class AccountController {
 
+    @Autowired
     private IAccountService accountService;
 
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
