@@ -1,11 +1,10 @@
 package com.expense.manager.controller;
 
 import com.expense.manager.bo.Expense;
-import com.expense.manager.bo.Income;
 import com.expense.manager.bo.User;
 import com.expense.manager.dto.Response;
 import com.expense.manager.exception.ValidationException;
-import com.expense.manager.service.impl.ExpenseService;
+import com.expense.manager.service.IExpenseService;
 import com.expense.manager.utils.UserUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +23,7 @@ public class ExpenseController {
     private static final Logger logger = LoggerFactory.getLogger(ExpenseController.class);
 
     @Autowired
-    private ExpenseService expenseService;
+    private IExpenseService expenseService;
     @Value("${expense.create.message}")
     private String expenseCreateMessage;
     @Value("${expense.update.message}")

@@ -1,8 +1,11 @@
 package com.expense.manager.service.impl;
 
 import com.expense.manager.bo.Expense;
+import com.expense.manager.bo.Income;
+import com.expense.manager.dao.IAccountDao;
 import com.expense.manager.dao.IExpenseDao;
 import com.expense.manager.exception.ValidationException;
+import com.expense.manager.service.IAccountService;
 import com.expense.manager.service.IExpenseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,11 +16,13 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class ExpenseService implements IExpenseService {
-    private static final Logger logger = LoggerFactory.getLogger(ExpenseService.class);
+public class ExpenseServiceImpl implements IExpenseService {
+    private static final Logger logger = LoggerFactory.getLogger(ExpenseServiceImpl.class);
 
     @Autowired
     private IExpenseDao expenseDao;
+    @Autowired
+    private IAccountDao accountDao;
     @Autowired
     private IValidationService validationService;
 
@@ -27,6 +32,7 @@ public class ExpenseService implements IExpenseService {
             throw new ValidationException("expense record is invalid " + expense);
         }
         logger.info("saving expense {}", expense);
+        accountDao.updateAmount(-expense.getAmount(), expense.getAccount().getId(), userId);
         return expenseDao.save(expense, userId);
     }
 
@@ -36,6 +42,15 @@ public class ExpenseService implements IExpenseService {
             throw new ValidationException("expense record is invalid " + expense);
         }
         logger.info("updating expense {}", expense);
+        Expense oldExpense = get(expense.getId(), userId);
+        if(oldExpense.getAccount().getId() == expense.getAccount().getId()){
+            if(oldExpense.getAmount() != expense.getAmount()){
+                accountDao.updateAmount(oldExpense.getAmount() - expense.getAmount(), expense.getAccount().getId(), userId);
+            }
+        }else{
+            accountDao.updateAmount(-expense.getAmount(), expense.getAccount().getId(), userId);
+            accountDao.updateAmount(oldExpense.getAmount(), oldExpense.getAccount().getId(), userId);
+        }
         expenseDao.update(expense, userId);
     }
 
@@ -54,6 +69,8 @@ public class ExpenseService implements IExpenseService {
             throw new ValidationException("Invalid id " + id);
         }
         logger.info("deteling expense record for {}", id);
+        Expense expense = get(id, userId);
+        accountDao.updateAmount(expense.getAmount(), expense.getAccount().getId(), userId);
         expenseDao.delete(id, userId);
     }
 

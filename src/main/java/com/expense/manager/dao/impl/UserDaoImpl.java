@@ -20,7 +20,7 @@ import java.sql.*;
 import java.util.List;
 
 @Repository
-public class UserDao implements IUserDao {
+public class UserDaoImpl implements IUserDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

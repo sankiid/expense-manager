@@ -15,7 +15,7 @@ import java.sql.*;
 import java.util.List;
 
 @Repository
-public class CategoryDao implements ICategoryDao {
+public class CategoryDaoImpl implements ICategoryDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

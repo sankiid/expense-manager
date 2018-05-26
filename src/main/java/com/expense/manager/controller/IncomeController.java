@@ -4,15 +4,13 @@ import com.expense.manager.bo.Income;
 import com.expense.manager.bo.User;
 import com.expense.manager.dto.Response;
 import com.expense.manager.exception.ValidationException;
-import com.expense.manager.service.impl.IncomeService;
-import com.expense.manager.utils.StringUtils;
+import com.expense.manager.service.IIncomeService;
 import com.expense.manager.utils.UserUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +23,7 @@ public class IncomeController {
     private static final Logger logger = LoggerFactory.getLogger(IncomeController.class);
 
     @Autowired
-    private IncomeService incomeService;
+    private IIncomeService incomeService;
     @Value("${income.create.message}")
     private String incomeCreateMessage;
     @Value("${income.update.message}")

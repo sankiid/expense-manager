@@ -15,4 +15,7 @@ public interface IAccountDao {
     List<UserAccountInfo> get(long userId);
 
     void delete(long id, long userId);
+
+    void updateAmount(float amount, long id, long userId);
+
 }

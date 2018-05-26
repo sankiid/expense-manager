@@ -23,6 +23,7 @@ public class AccountInfoMapper implements RowMapper<UserAccountInfo> {
         uai.setCreatedAt(rs.getDate("created_at"));
         uai.setUpdatedAt(rs.getDate("updated_at"));
         uai.setAmount(rs.getFloat("amount"));
+        uai.setAccountNumber(rs.getString("account_number"));
         return uai;
     }
 }

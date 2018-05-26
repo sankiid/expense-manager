@@ -41,6 +41,7 @@ CREATE TABLE `income` (
   `category_id` int(11) NOT NULL,
   `notes` varchar(100) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
+  `user_account_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   -- FOREIGN KEY (`user_id`) REFERENCES `users`(`id`),
   KEY `created_at_idx` (`user_id`, `created_at`)
@@ -55,6 +56,7 @@ CREATE TABLE `expense` (
   `category_id` int(11) NOT NULL,
   `notes` varchar(100) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
+  `user_account_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   -- FOREIGN KEY exp_user_idx (`user_id`) REFERENCES `users`(`id`),
   KEY `created_at_idx2` (`user_id`, `created_at`)

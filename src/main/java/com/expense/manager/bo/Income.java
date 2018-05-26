@@ -10,16 +10,18 @@ public class Income implements Serializable {
     private float amount;
     private Date date;
     private Category category;
+    private UserAccountInfo account;
 
     public Income() {
     }
 
-    public Income(long id, String notes, float amount, Date date, Category category) {
+    public Income(long id, String notes, float amount, Date date, Category category, UserAccountInfo account) {
         this.id = id;
         this.notes = notes;
         this.amount = amount;
         this.date = date;
         this.category = category;
+        this.account = account;
     }
 
     public long getId() {
@@ -62,6 +64,14 @@ public class Income implements Serializable {
         this.category = category;
     }
 
+    public UserAccountInfo getAccount() {
+        return account;
+    }
+
+    public void setAccount(UserAccountInfo account) {
+        this.account = account;
+    }
+
     @Override
     public String toString() {
         return "Income{" +
@@ -70,6 +80,7 @@ public class Income implements Serializable {
                 ", amount=" + amount +
                 ", date=" + date +
                 ", category='" + category + '\'' +
+                ", account='" + account + '\'' +
                 '}';
     }
 }
