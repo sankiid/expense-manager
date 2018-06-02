@@ -39,4 +39,10 @@ public class RestExceptionHandler {
                 "Category not listed");
         return new ResponseEntity<Response>(response, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(UserExistException.class)
+    protected ResponseEntity<Response> handleUserExistException(UserExistException ex) {
+        Response response = new Response(ex.getCode(), null, ex.getMessage(),null);
+        return new ResponseEntity<Response>(response, HttpStatus.NOT_FOUND);
+    }
 }

@@ -5,6 +5,7 @@ import com.expense.manager.bo.User;
 import com.expense.manager.cache.RoleCache;
 import com.expense.manager.dto.Response;
 import com.expense.manager.enums.UserRole;
+import com.expense.manager.exception.UserExistException;
 import com.expense.manager.exception.UserNotFoundException;
 import com.expense.manager.service.IUserService;
 import com.expense.manager.utils.PasswordUtils;
@@ -37,7 +38,7 @@ public class LoginController {
     public Response createUser(@RequestBody User user) throws UserNotFoundException {
         User dbUser = userService.getUserByUsername(user.getUsername());
         if(dbUser != null){
-            throw new RuntimeException("User already registered");
+            throw new UserExistException("User already registered", 900);
         }
         userService.save(user);
         Response response = new Response(201, "successfully created new user", null, "{}");
