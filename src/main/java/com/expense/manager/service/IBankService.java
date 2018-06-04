@@ -8,4 +8,6 @@ public interface IBankService {
     List<Bank> getAllBanks();
 
     Bank getBankById(long id);
+
+    void save(Bank bank);
 }

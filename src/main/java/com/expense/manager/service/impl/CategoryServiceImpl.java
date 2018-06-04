@@ -34,7 +34,10 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Override
     public long save(Category category) {
-        return categoryDao.save(category);
+        long catId = categoryDao.save(category);
+        category.setId(catId);
+        categoryCache.setValues(category);
+        return catId;
     }
 
     @Override

@@ -27,7 +27,7 @@ public class BankCache {
         });
     }
 
-    private void setValues(Bank b) {
+    public void setValues(Bank b) {
         idToBankCache.put(b.getId(), b);
     }
 

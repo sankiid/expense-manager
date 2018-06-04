@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -28,7 +27,7 @@ public class CategoryController {
 
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @RequestMapping(value = "/add", method = RequestMethod.PUT)
-    public Response addCategory(HttpServletRequest request, @RequestBody Category category){
+    public Response addCategory(@RequestBody Category category){
         long id = categoryService.save(category);
         Response response = new Response(201, "category add successfully", null, id);
         return response;

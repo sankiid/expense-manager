@@ -75,6 +75,7 @@ CREATE TABLE `category` (
 INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('salary', now(), 'income');
 INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('gift', now(), 'income');
 INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('investment', now(), 'income');
+INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('others', now(), 'income');
 
 INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('rent', now(), 'expense');
 INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('eletricity bill', now(), 'expense');
@@ -82,8 +83,9 @@ INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('mobile bill', now
 INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('internet bill', now(), 'expense');
 INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('maid', now(), 'expense');
 INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('water bill', now(), 'expense');
-INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('car fuel', now(), 'expense');
-INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('car maintainace', now(), 'expense');
+INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('car', now(), 'expense');
+INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('loan emi', now(), 'expense');
+INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('construction', now(), 'expense');
 INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('travel', now(), 'expense');
 INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('shoppings', now(), 'expense');
 INSERT INTO `category` (`name`, `created_at`, `type`) VALUES ('grocery', now(), 'expense');
@@ -111,8 +113,10 @@ VALUES
 	(6, 'phonepe', '2018-05-19', '2018-05-19'),
 	(7, 'kotak bank', '2018-05-19', '2018-05-19'),
 	(8, 'wallet', '2018-05-19', '2018-05-19'),
-	(9, 'others', '2018-05-19', '2018-05-19');
-
+	(9, 'kotak', '2018-05-19', '2018-05-19'),
+    (10, 'HDFC', '2018-05-19', '2018-05-19'),
+    (11, 'Yes bank', '2018-05-19', '2018-05-19'),
+    (12, 'others', '2018-05-19', '2018-05-19');
 
 drop table user_account_info;
 CREATE TABLE `user_account_info` (

@@ -8,4 +8,6 @@ public interface IBankDao {
     List<Bank> getAllBanks();
 
     Bank getBankById(long id);
+
+    long save(Bank bank);
 }

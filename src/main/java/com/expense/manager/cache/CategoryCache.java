@@ -31,7 +31,7 @@ public class CategoryCache {
         });
     }
 
-    private void setValues(Category c) {
+    public void setValues(Category c) {
         nameToIdCache.put(c.getName(), c);
         idToNameCache.put(c.getId(), c);
     }

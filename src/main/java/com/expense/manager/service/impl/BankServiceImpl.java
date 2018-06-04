@@ -14,6 +14,7 @@ public class BankServiceImpl implements IBankService {
 
     @Autowired
     private IBankDao bankDao;
+    private BankCache bankCache = BankCache.getInstance();
 
     @Override
     public List<Bank> getAllBanks() {
@@ -23,6 +24,13 @@ public class BankServiceImpl implements IBankService {
     @Override
     public Bank getBankById(long id) {
         return bankDao.getBankById(id);
+    }
+
+    @Override
+    public void save(Bank bank) {
+        long bankId = bankDao.save(bank);
+        bank.setId(bankId);
+        bankCache.setValues(bank);
     }
 
 }
