@@ -24,4 +24,8 @@ public class StringUtils {
         }
         return out.toString();
     }
+
+    public static boolean isBlank(String name) {
+        return name == null || name.trim().length() == 0;
+    }
 }

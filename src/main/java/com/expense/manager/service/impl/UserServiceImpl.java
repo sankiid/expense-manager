@@ -9,6 +9,8 @@ import com.expense.manager.exception.UserNotFoundException;
 import com.expense.manager.security.JwtTokenHandler;
 import com.expense.manager.service.IUserService;
 import com.expense.manager.utils.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -19,6 +21,7 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements IUserService {
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private IUserDao userDao;
@@ -72,6 +75,10 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User getUserByUsername(String username) {
+        if(username == null || username.length() < 2){
+            logger.warn("Illegal activity recorded {}", username);
+            throw new RuntimeException("Invalid details.");
+        }
         return userDao.getUserByUsername(username);
     }
 

@@ -45,4 +45,10 @@ public class RestExceptionHandler {
         Response response = new Response(ex.getCode(), null, ex.getMessage(),null);
         return new ResponseEntity<Response>(response, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    protected ResponseEntity<Response> handleRuntimeException(RuntimeException ex) {
+        Response response = new Response(HttpStatus.UNAUTHORIZED.value(), null, ex.getMessage(),null);
+        return new ResponseEntity<Response>(response, HttpStatus.UNAUTHORIZED);
+    }
 }
